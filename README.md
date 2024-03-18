@@ -35,5 +35,5 @@ Place your data.csv file in the `data` directory.
 or with ts-node:
 1. Install dependencies: `yarn`
 2. Install ts-node if not already installed: `yarn global add ts-node`
-3. Run the application: `ts-node index.ts`
+3. Run the application: `yarn ts-node index.ts`
 
