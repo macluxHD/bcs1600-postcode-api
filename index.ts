@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import csv from "csv-parser";
 import fs from "fs";
 import log4js from "log4js";
@@ -7,9 +7,11 @@ const logger = log4js.getLogger();
 logger.level = process.env.LOG_LEVEL || 'info'; // set your logging level here
 
 const app = express();
+const router = Router();
 
 app.use(express.json()); // for parsing application/json
 
+// Load the data from the csv file into memory
 const postcodes: { [key: string]: { lat: string; long: string } } = {};
 
 fs.createReadStream("data/data.csv")
@@ -18,7 +20,7 @@ fs.createReadStream("data/data.csv")
     postcodes[row.Zip] = { lat: row.Lat, long: row.Lon };
   });
 
-app.post("/get_coordinates", (req: express.Request, res: express.Response) => {
+router.post("/get_coordinates", (req: express.Request, res: express.Response) => {
   let { postcode } = req.body;
 
   logger.trace("Request from ip address: ", req.ip);
@@ -45,6 +47,8 @@ app.post("/get_coordinates", (req: express.Request, res: express.Response) => {
     "postcode": postcode
   });
 });
+
+app.use(process.env.BASE_URL || "", router);
 
 const port = process.env.PORT || 3000;
 
