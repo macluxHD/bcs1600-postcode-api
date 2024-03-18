@@ -4,7 +4,7 @@ import fs from "fs";
 import log4js from "log4js";
 
 const logger = log4js.getLogger();
-logger.level = process.env.loglevel || 'info'; // set your logging level here
+logger.level = process.env.LOG_LEVEL || 'info'; // set your logging level here
 
 const app = express();
 
