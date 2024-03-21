@@ -10,7 +10,7 @@ This is an API for Project 1-2 (BCS1600) at Maastricht University. This API is u
 
 1. Pull the Docker image: `docker pull ghcr.io/macluxhd/bcs1600-postcode-api:latest`
 2. Create a volume for data: `docker volume create postcode-data`
-3. Run the Docker container: `docker run -p 3000:3000 -e loglevel=INFO -v postcode-data:/app/data ghcr.io/macluxhd/bcs1600-postcode-api:latest`
+3. Run the Docker container: `docker run -p 3000:3000 -v postcode-data:/app/data ghcr.io/macluxhd/bcs1600-postcode-api:latest`
 
 The data.csv file should be placed in the `/app/data` directory inside the Docker container. So edit the volume path `postcode-data` to the desired path on your system.
 
